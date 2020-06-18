@@ -18,7 +18,7 @@ class Custom(nn.Module):
         self.bn3 = nn.BatchNorm2d(128)
         self.dropout3 = nn.Dropout2d(p=0.25)
         
-        self.fc1 = nn.Linear(in_features=128*7*7, out_features = 512)
+        self.fc1 = nn.Linear(in_features=128*16*16, out_features = 512)
         self.bn5 = nn.BatchNorm1d(512)
         self.fc2 = nn.Linear(in_features=512, out_features=2)
         self.relu1 = nn.ReLU()
@@ -46,7 +46,7 @@ class Custom(nn.Module):
         x = nn.functional.max_pool2d(x,2) # /2
         x = self.dropout3(x)
         
-        x = x.view(-1, 128*7*7)
+        x = x.view(-1, 128*16*16)
         x = self.fc1(x)
         x = self.relu5(x)
         x = self.bn5(x)
